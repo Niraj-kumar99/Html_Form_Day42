@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- This gives the browser instructions on how to control the page's dimensions and scaling -->
+        <meta name="viewport" content="width=device-width">
+        <title>Basic input type</title>
+        <!--Using simple_form CSS file for stylying-->
+        <link rel="stylesheet" href="../css/simple_form.css">
+    </head>
+
+    <body>
+        <form>
+            <header class="headerContainer">
+                <h1>HTML 5 Form Input Fields</h1>
+            </header>
+
+            <div>
+                <!--Label or asking to enter name in name space -->
+                <label for="text">text input type for Name : </label>
+                <!--Input Box to enter user name-->
+                <input type="text" id="text" name="text">
+                <!--This not a HTML eliment we defined this -->
+                <error-output for="text" class="text-error"></error-output>
+            </div>
+
+            <div>
+                <label for="pwd">Password input type :</label>
+                <input type="password" id="pwd" name="pwd" required> 
+                <!--required is written so that when we hit submit 
+                button then if the field is left empty then a pop up will
+                say to fill -->
+            </div>
+
+            <div>
+                <label for="email">email input type :</label>
+                <input type="email" id="email" name="email" >
+            </div>
+
+            <div>
+                <label for="url">url input type :</label>
+                <input type="url" id="url" name="url" >
+            </div>
+
+            <div>
+                <label for="number">number input type :</label>
+                <input type="number" id="number" name="number" >
+            </div>
+
+            <div>
+                <label for="tel">telephone_no input type :</label>
+                <input type="tel" id="tel" name="tel" >
+            </div>
+
+            <div>
+                <label for="search">search input type :</label>
+                <input type="search" id="search" name="search" >
+            </div>
+
+            <div class="nativeDateTimePicker">
+                <label for="startDate">choose Date and time :</label>
+                <input type="datetime-local" id="startDate" name="startDate">
+                <span class="vslidity"></span>
+            </div>
+
+            <div>
+                <label for="salary">choose salary :</label>
+                <input type="range" id="salary" name="tel" min="300000"
+                max="600000" step="100" value="400000" >
+                <output class="salary-output" for="salary">600000</output>
+            </div>
+
+            <div>
+                <button>Submit</button>
+            </div>
+
+        </form>
+
+        <!-- Script for salary scroller -->
+        <script>
+        const salary = document.querySelector('#salary');
+        const salaryOutput = document.querySelector('.salary-output');
+        salaryOutput.textContent = salary.value;
+        //Added event listner so that when we scroll the slidder
+        //the nmbers will re shown .
+        salary.addEventListener('input', function() {
+            salaryOutput.textContent = salary.value;
+            console.log(salaryOutput.textContent);
+        });
+        </script>
+        
+        <script>
+            const email = document.querySelector('#email');
+            const emailerror = document.querySelector('.email-error');
+            email.addEventListener('input', function() {
+                let emailpattern = RegExp('^[A-Z a-z 0-9]+([._+-][0-9 a-z A-Z]+)*@[0-9 a-z A-Z]+.[a-z A-Z]{2,3}([.][a-z A-Z]{2})*$');
+                if (emailpattern.test(email.value))
+                    emailerror.textContent = ' ';
+                else
+                    emailerror.textContent = 'Email is Incorrect!';
+            });
+            console.log(email);
+        </script>
+
+        <script>
+            const number = document.querySelector('#number');
+            const numbererror = document.querySelector('.number-error');
+            number.addEventListener('input', function() {
+                let numberpattern = RegExp('^(0|91)?[\\s][0-9]{10}$');
+                if (numberpattern.test(number.value))
+                    numbererror.textContent = ' ';
+                else
+                    numbererror.textContent = 'Number is Incorrect!';
+            });
+            console.log(number);
+        </script>
+
+        <script>
+            const pwd = document.querySelector('#pwd');
+            const passworderror = document.querySelector('.pwd-error');
+            pwd.addEventListener('input', function() {
+                let passwordpattern = RegExp('^(?=[0-9 A-Z a-z !@#$%^&*();:]{8,}$)(?=.*[A-Z]{1,})(?=.*[0-9]{1,})(?=.*[!@#$%^&*();:]{1,}).*$');
+                if (passwordpattern.test(pwd.value))
+                    passworderror.textContent = ' ';
+                else
+                    passworderror.textContent = 'Password is Incorrect!';
+            });
+            console.log(pwd);
+        </script>
+        
+    </body>
+</html>
